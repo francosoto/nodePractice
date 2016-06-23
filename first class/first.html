@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function a(cb) {
+				setTimeout(cb, 1000);
+			}
+
+			function b(cb) {
+				setTimeout(cb, 500);
+			}
+
+			function c(cb) {
+				setTimeout(cb, 800);
+			}
+
+			console.log("init...");
+
+			function _a() {
+				return new Promise((resolve,rej) => {
+					a(resolve)
+				});
+			}
+
+			function _b() {
+				return new Promise((resolve,rej) => {
+					b(resolve)
+				});
+			}
+
+			function _c() {
+				return new Promise((resolve,rej) => {
+					c(resolve)
+				});
+			}
+
+			function crazyRequest(arg) {
+				console.log(arg)
+				for(var x=0; x < arg.length; x++) {
+				// arg.forEach( (f)=>{
+					window[arg[x].name] = () => {
+						return new Promise((resolve,rej) => {
+							arg[x](resolve);
+						})
+					}
+				}
+					// let f = arg[x];
+					// arguments.forEach((f)=>{
+					// console.log(arg[x])
+				// }
+			}
+			var aasd=[a,b,c]
+			crazyRequest(aasd);
+			// b = crazyRequest(b);
+			// c = crazyRequest(c);
+
+			// a()
+			// .then( ()=>{
+			// 	console.log("Termino A")
+			// 	return b()
+			// })
+			// .then( ()=>{
+			// 	console.log("Termino B")
+			// 	return c()
+			// })
+			// .then( ()=>{
+			// 	console.log("Termino C")
+			// })
+			// .catch( (e)=>(
+			// 	console.log("catch:",e)
+			// ));
+		</script>
+	</head>
+</html>
