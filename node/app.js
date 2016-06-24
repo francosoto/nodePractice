@@ -1,31 +1,22 @@
 console.log('Server web 1.0, class2')
 
 const http = require('http');
-const fs = require('fs');
-const myserver = require('./lib/server');
-
-console.log(process.cwd());
-//console.log(myserver.ehAmeo())
-const publicDirectory = process.cwd() + "/public";
+const serverLoco = require('./lib/server');
 //
-const server = http.createServer((req,res) => {
-	//console.log(req.headers)
-	let file =  (req.url == '/')
-				? 	'index.html'
-				: 	''
-	//if(req.url == '/')
-	try {
-		content = fs.readFileSync(publicDirectory + "/" + file)
-	} catch(e) {
-		content = fs.readFileSync(publicDirectory + "/404.html")
-	}
+/*const server = http.createServer((req, res)=>{
+	new myserver(req, res);
+});*/
 
-	res.end(content)
-});
+var myServer = new serverLoco()
 
+myServer.get('/time',(req,res)=>{
+	res.end(new Date().getTime().toString())
+})
 
+const server = http.createServer(myServer.Request);
+/*
 server.on('clientError',(err,socket)=>{
 	socket.end('HTTP/1.1 400 Bad Request\r\n\r\n')
 });
-
+*/
 server.listen(8000);
