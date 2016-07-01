@@ -1,0 +1,20 @@
+<div>
+	<h2>Hola! cuál es tu cerveza favorita?</h2>	
+	<form action="cervezas" method="post">
+		<p><label>Nombre</label>
+		<input name="nombre" type="text"/></p>
+		<p><label>Sabor</label>
+		<input name="sabor" type="text"/></p>
+		<p><label>País</label>
+		<input name="pais" type="text"/></p>
+		<p><label>Ciudad</label>
+		<input name="ciudad" type="text"/></p>
+		<button type="submit">¡Enviar!</button><br>
+	</form>
+
+	<div>
+		{{#each birras}}
+			<p>Nombre: {{this.nombre}}, está buena? {{this.sabor}}. Es de {{this.pais}}, {{this.ciudad}}</p>
+		{{/each}}
+	</div>
+</div>

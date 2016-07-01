@@ -1,0 +1,17 @@
+{
+  "name": "third_party",
+  "version": "1.0.0",
+  "description": "Clase 3 curso nodejs",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Franco",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "mongojs": "^2.4.0"
+  }
+}
